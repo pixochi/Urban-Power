@@ -28,15 +28,19 @@ class App extends Component {
           src={axelTorvModel}
           rotation="-90 0 0"
           position="-20 -100 -20"
-          isStaticBody
         />
+
+        <Lamp 
+
+        />
+        
         <Ground
           position="0 .01 8.5"
           rotation="-90 -26.5 0"
           texture={groundTexture}
           repeat="5 4"
-          width="51"
-          height="40"
+          width={51}
+          height={40}
         />
       </Scene>
     );

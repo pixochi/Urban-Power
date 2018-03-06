@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
-import { StaticBody, GltfModel } from './index';
-import lampModel from '../resources/models/scene.gltf';
+import { StaticBody, ObjModel } from './index';
+import lampModel from '../resources/models/street_lamp/streetlamp.obj';
+import lampMaterial from '../resources/models/street_lamp/streetlamp.mtl';
 
 export default class Lamp extends PureComponent {
 
@@ -26,7 +27,9 @@ export default class Lamp extends PureComponent {
     // const { height, position, width } = this.props;
 
     return (
-      <Entity primitive="a-gltf-model" src={lampModel} position="0 2 -3" />
+      <StaticBody>
+        <ObjModel model={lampModel} material={lampMaterial} position="0 0 -3" />
+      </StaticBody>
     )
   }
 }
