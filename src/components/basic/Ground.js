@@ -7,32 +7,45 @@ import { StaticBody } from '../index';
 export default class Ground extends PureComponent {
 
   static propTypes = {
+    color: PropTypes.string,
     height: PropTypes.number,
     position: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
     ]),
+    repeat: PropTypes.string,
+    rotation: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    texture: PropTypes.string,
     width: PropTypes.number,
   }
 
   static defaultProps = {
-    height: 100,
+    color: 'grey',
+    height: 50,
     position: '0 0 0',
-    width: 100
+    repeat: '1 1',
+    rotation: '-90 0 0',
+    texture: '',
+    width: 50
   }
 
   render() {
-    const { height, position, width } = this.props;
+    const { color, height, position, repeat, rotation, texture, width } = this.props;
 
     return (
       <StaticBody>
         <Entity
           primitive="a-plane"
-          rotation="-90 0 0"
+          rotation={rotation}
           position={position}
           width={width}
           height={height}
-          color="red"
+          src={texture}
+          color={color}
+          repeat={repeat}
         />
       </StaticBody>
     )
