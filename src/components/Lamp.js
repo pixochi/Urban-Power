@@ -31,10 +31,14 @@ export default class Lamp extends PureComponent {
     scale: '0.5 0.5 0.5',
   }
 
+  constructor(props) {
+    super(props);
+    this.ligthPosition1 = translateCoordinatesBy(props.position, {x: -.65, y: 4, z: -0.4});
+    this.ligthPosition2 = translateCoordinatesBy(props.position, {x: -1.4, y: 4, z: 0.4});
+  }
+
   render() {
     const { isOn, position, rotation, scale } = this.props;
-    const ligthPosition1 = translateCoordinatesBy(position, {x: -.65, y: 4, z: -0.4});
-    const ligthPosition2 = translateCoordinatesBy(position, {x: -1.4, y: 4, z: 0.4});
 
     return (
       <StaticBody>
@@ -49,17 +53,16 @@ export default class Lamp extends PureComponent {
           <Entity>
             <Light 
               type="point" 
-              position={ligthPosition1} 
-              intensity="0.3"
+              position={this.ligthPosition1} 
+              intensity={0.3}
             />
             <Light 
               type="point" 
-              position={ligthPosition2} 
-              intensity="0.3"
+              position={this.ligthPosition2} 
+              intensity={0.3}
             />
           </Entity>
         }
-        
       </StaticBody>
     )
   }

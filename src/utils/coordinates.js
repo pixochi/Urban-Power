@@ -10,8 +10,6 @@ export const translateCoordinatesBy = (originalCoordinates, translateBy) => {
     z: originalCoordinates.z + z,
   }
 
-  console.log(newCoordinates)
-
   return newCoordinates;
 }
 

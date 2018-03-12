@@ -12,4 +12,5 @@ export { default as StaticBody } from './basic/StaticBody';
 
 
 export { default as Lamp } from './Lamp';
+export { default as MovementControl } from './MovementControl';
 export { default as RigidCursor } from './RigidCursor';

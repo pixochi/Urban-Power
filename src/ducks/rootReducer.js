@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 
-// import { reducer as elements } from './elements';
-// import { reducer as attributes } from './attributes';
+import camera from './camera';
 
 
 export default combineReducers({
-  sample: (state = {}, action) => state
+  camera
 });

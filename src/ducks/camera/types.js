@@ -1,0 +1,1 @@
+export const TRANSLATE_POSITION = "urban-power/camera/TRANSLATE_POSITION";
