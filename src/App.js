@@ -21,18 +21,16 @@ class App extends Component {
   render() {
     return (
       <Scene physics="debug: true">
-        <Sky src={skyDay} />
-        <Light type="ambient" />
+        {/* <Sky src={skyDay} /> */}
+        {/* <Light type="ambient" /> */}
         <RigidCursor />
         <GltfModel 
           src={axelTorvModel}
           rotation="-90 0 0"
           position="-20 -100 -20"
         />
-
-        <Lamp 
-
-        />
+        
+        <Lamp isOn={true} />
         
         <Ground
           position="0 .01 8.5"
