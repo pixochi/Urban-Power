@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import aframe from 'aframe';
 import { Scene } from 'aframe-react';
 import 'aframe-physics-system';
-import 'aframe-extras';
 
 import { MovementSystem } from './containers';
 import { 
