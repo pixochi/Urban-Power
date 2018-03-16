@@ -2,19 +2,15 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types';
 
+import { aframeCoordinates } from '../../utils/propTypes';
+
 export default class ObjModel extends PureComponent {
 
   static propTypes = {
     material: PropTypes.string,
     model: PropTypes.string.isRequired,
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    rotation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]), 
+    position: aframeCoordinates,
+    rotation: aframeCoordinates, 
   }
 
   static defaultProps = {

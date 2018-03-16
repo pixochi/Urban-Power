@@ -2,15 +2,14 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types';
 
+import { aframeCoordinates } from '../../utils/propTypes';
+
 export default class Light extends PureComponent {
 
   static propTypes = {
     color: PropTypes.string,
     intensity: PropTypes.number,
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    position: aframeCoordinates,
     type: PropTypes.string
   }
 

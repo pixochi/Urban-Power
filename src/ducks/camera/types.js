@@ -1,1 +1,1 @@
-export const TRANSLATE_POSITION = "urban-power/camera/TRANSLATE_POSITION";
+export const TRANSLATE_CAMERA = "urban-power/camera/TRANSLATE_CAMERA";

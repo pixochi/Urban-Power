@@ -4,12 +4,11 @@ import { Scene } from 'aframe-react';
 import 'aframe-physics-system';
 import 'aframe-extras';
 
+import { MovementSystem } from './containers';
 import { 
   GltfModel, 
   Ground,
   Lamp,
-  MovementControl,
-  RigidCursor, 
   Sky 
 } from './components';
 import axelTorvModel from './resources/models/axeltorv.gltf';
@@ -35,7 +34,7 @@ class App extends Component {
       <Scene physics="debug: true">
         {/* <Sky src={skyDay} /> */}
         {/* <Light type="ambient" /> */}
-        <RigidCursor />
+        <MovementSystem />
         <GltfModel
           id="axelTorvModel"
           src={axelTorvModel}

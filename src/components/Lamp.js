@@ -5,23 +5,15 @@ import PropTypes from 'prop-types'
 import { StaticBody, GltfModel, Light } from './index';
 import lampModel from '../resources/models/street_lamp/streetlampg.glb';
 import { translateCoordinatesBy } from '../utils/coordinates';
+import { aframeCoordinates } from '../utils/propTypes';
 
 export default class Lamp extends PureComponent {
 
   static propTypes = {
     isOn: PropTypes.bool,
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    rotation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    scale: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    position: aframeCoordinates,
+    rotation: aframeCoordinates,
+    scale: aframeCoordinates,
   }
 
   static defaultProps = {

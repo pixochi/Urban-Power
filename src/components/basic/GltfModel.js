@@ -2,26 +2,16 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types';
 
+import { aframeCoordinates } from '../../utils/propTypes';
+
 export default class GltfModel extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string,
-    src: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]).isRequired,
-    rotation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    scale: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    src: aframeCoordinates.isRequired,
+    rotation: aframeCoordinates,
+    position: aframeCoordinates,
+    scale: aframeCoordinates,
   }
 
   static defaultProps = {

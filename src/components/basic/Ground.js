@@ -3,21 +3,16 @@ import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
 import { StaticBody } from '../index';
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Ground extends PureComponent {
 
   static propTypes = {
     color: PropTypes.string,
     height: PropTypes.number,
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    position: aframeCoordinates,
     repeat: PropTypes.string,
-    rotation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    rotation: aframeCoordinates,
     texture: PropTypes.string,
     width: PropTypes.number,
   }

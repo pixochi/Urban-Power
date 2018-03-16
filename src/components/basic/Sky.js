@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react';
 import { Entity } from 'aframe-react';
-import PropTypes from 'prop-types';
+
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Sky extends PureComponent {
 
   static propTypes = {
-    src: PropTypes.oneOfType([
-      PropTypes.string
-    ]).isRequired
+    src: aframeCoordinates.isRequired
   }
 
   render() {

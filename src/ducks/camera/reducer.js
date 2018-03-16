@@ -1,15 +1,17 @@
-import { Record } from 'immutable';
+import { Record, Map } from 'immutable';
 
 import * as types from './types';
 
-const initialState = Record({
-  position: null
+const CameraRecord = Record({
+  position: Map({y:10})
 });
+
+const initialState = new CameraRecord();
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case types.TRANSLATE_POSITION:
-      return state.merge(action.coordinates);
+    case types.TRANSLATE_CAMERA:
+      return state.set('position', state.position.merge(action.nextPosition));
     default: 
       return state;
   }

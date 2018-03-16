@@ -1,26 +1,17 @@
 import React, { PureComponent } from 'react';
-import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
 import { GltfModel } from './';
 import arrowModel from '../resources/models/arrow.glb';
+import { aframeCoordinates } from '../utils/propTypes';
 
 export default class MovementControl extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    rotation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    scale: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    position: aframeCoordinates,
+    rotation: aframeCoordinates,
+    scale: aframeCoordinates,
   }
 
   static defaultProps = {
@@ -31,7 +22,7 @@ export default class MovementControl extends PureComponent {
   }
 
   render() {
-    const { color, onClick, position, repeat, rotation, scale } = this.props;
+    const { onClick, position, rotation, scale } = this.props;
 
     return (
      <GltfModel 

@@ -1,4 +1,5 @@
 export const translateCoordinatesBy = (originalCoordinates, translateBy) => {
+  
   if (typeof originalCoordinates === "string") {
     originalCoordinates = coordinatesStringToObject(originalCoordinates);
   }
