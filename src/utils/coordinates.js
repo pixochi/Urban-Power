@@ -1,20 +1,24 @@
+import { Map } from 'immutable';
+
 export const translateCoordinatesBy = (originalCoordinates, translateBy) => {
   
   if (typeof originalCoordinates === "string") {
-    originalCoordinates = coordinatesStringToObject(originalCoordinates);
+    originalCoordinates = coordinatesStringToMap(originalCoordinates);
+  } else if (!Map.isMap(originalCoordinates)) {
+    originalCoordinates = Map(originalCoordinates);
   }
 
   const { x = 0, y = 0, z = 0 } = translateBy;
   const newCoordinates = { 
-    x: originalCoordinates.x + x,
-    y: originalCoordinates.y + y,
-    z: originalCoordinates.z + z,
+    x: originalCoordinates.get('x') + x,
+    y: originalCoordinates.get('y') + y,
+    z: originalCoordinates.get('z') + z,
   }
 
   return newCoordinates;
 }
 
-export const coordinatesStringToObject = (str) => {
+export const coordinatesStringToMap = (str) => {
   const [x, y, z] = str.split(' ').map(coordinate => Number.parseFloat(coordinate));
-  return {x, y, z}
+  return Map({x, y, z});
 }

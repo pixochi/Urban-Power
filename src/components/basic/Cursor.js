@@ -25,18 +25,18 @@ export default class Cursor extends PureComponent {
     const { color, geometry, isStatic, position, rotation } = this.props;
 
     return (
-    <Entity 
-      primitive="a-camera"
-      position={position}
-      rotation={rotation}
-      static-body={isStatic}
-    >
-        <Entity
-          geometry={geometry}
-          primitive="a-cursor" 
-          color={color}
-        />
-    </Entity>
+      <Entity 
+        primitive="a-camera"
+        position={position}
+        rotation={rotation}
+        static-body={isStatic}
+      >
+          <Entity
+            geometry={geometry}
+            primitive="a-cursor" 
+            color={color}
+          />
+      </Entity>
     )
   }
 }

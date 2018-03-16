@@ -16,7 +16,7 @@ export default class MovementControl extends PureComponent {
 
   static defaultProps = {
     onClick: () =>  console.log("CLicked nav control"),
-    position: '0 0 0',
+    position: '0 2 -2',
     rotation: '0 0 0',
     scale: '3 3 3',
   }

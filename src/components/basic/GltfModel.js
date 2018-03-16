@@ -32,7 +32,8 @@ export default class GltfModel extends PureComponent {
         position={position}
         scale={scale}
         events={{
-          click: onClick
+          click: onClick,
+          stateadded: (e) => console.log('STATE ADED',e)
         }}
       />
     )
