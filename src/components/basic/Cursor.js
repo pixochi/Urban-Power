@@ -10,7 +10,8 @@ export default class Cursor extends PureComponent {
     geometry: PropTypes.object,
     isStatic: PropTypes.bool,
     position: aframeCoordinates,
-    rotation: aframeCoordinates
+    rotation: aframeCoordinates,
+    onRotationChanged: PropTypes.func
   }
 
   static defaultProps = {
@@ -18,11 +19,18 @@ export default class Cursor extends PureComponent {
     geometry: {radiusInner:0.008, radiusOuter:0.02},
     isStatic: false,
     position: '0 0 0',
-    rotation: '0 0 0'
+    rotation: '0 0 0',
+    onRotationChanged: () => null
+  }
+
+  handleComponentChanged = (ev) => {
+    if (ev.detail.name === 'rotation') {
+      this.props.onRotationChanged(ev);
+    }
   }
 
   render() {
-    const { color, geometry, isStatic, position, rotation } = this.props;
+    const { color, geometry, isStatic, position, rotation, onRotationChanged } = this.props;
 
     return (
       <Entity 
@@ -30,11 +38,17 @@ export default class Cursor extends PureComponent {
         position={position}
         rotation={rotation}
         static-body={isStatic}
+        events={{
+          componentchanged: this.handleComponentChanged
+        }}
       >
           <Entity
             geometry={geometry}
             primitive="a-cursor" 
             color={color}
+            events={{
+              stateadded: (e) => console.log('cursor ADED',e)
+            }}
           />
       </Entity>
     )

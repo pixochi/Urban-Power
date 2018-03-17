@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import { Cursor, StaticBody } from './index';
 import { aframeCoordinates } from '../utils/propTypes';
@@ -6,15 +7,21 @@ import { aframeCoordinates } from '../utils/propTypes';
 export default class RigidCursor extends PureComponent {
 
   static propTypes = {
-    position: aframeCoordinates
+    position: aframeCoordinates,
+    onRotationChanged: PropTypes.func
+  }
+
+  static defaultProps = {
+    position: '0 0 0',
+    onRotationChanged: () => null
   }
 
   render() {
-    const { position } = this.props;
+    const { position, onRotationChanged } = this.props;
 
     return (
       <StaticBody id="navigationControl">
-        <Cursor position={position} />
+        <Cursor position={position} onRotationChanged={onRotationChanged} />
       </StaticBody>
     )
   }

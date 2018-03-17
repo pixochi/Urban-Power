@@ -3,42 +3,66 @@ import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 
 import { RigidCursor, MovementControl } from '../components';
-import { translateCameraBy } from '../ducks/camera/actionCreators';
+import { translateCameraBy, rotateCamera } from '../ducks/camera/actionCreators';
 import { translateCoordinatesBy } from '../utils/coordinates';
 
 class MovementSystem extends PureComponent {
 
+  controlPosition = {
+    x: 0,
+    y: 2, // distance between camera and MovementControl
+    z: -2
+  }
+
+  // default rotation
+  controlRotation = { y:0 }
+
+  // how far is the camera moved
+  moveByPoints = 1;
+
   moveForward = () => {
-    const { position, move } = this.props;
-    move(position, {x: 1});
+    const { position, moveCamera } = this.props;
+    const translateBy = { 
+      x: -this.moveByPoints * Math.sin(this.radians),
+      z: -this.moveByPoints * Math.cos(this.radians) 
+    }
+    moveCamera(position, translateBy);
   }
 
-  constructor(props){
-    super(props);
-    this.position = props.position;
+  handleCameraRotation = (ev) => {
+    const { data } = ev.srcElement.components.rotation;
+    this.props.rotateCamera(data);
+    this.controlPosition = this.calcPositionOnRotationChanged(this.controlPosition.y, data.y);
+    this.controlRotation = { y: data.y }
+    console.log("ROTATION:",this.controlRotation)
   }
 
-  // componentDidMount = () => {
-  //   this.position = this.props.position;
-  // }
-  
+  calcPositionOnRotationChanged = (radius, degrees) => {
+    this.radians = this.convertToRadians(degrees);
+    const newPosition = {
+      x: -radius * Math.sin(this.radians),
+      y: this.controlPosition.y,
+      z: -radius * Math.cos(this.radians),
+    }
 
-  // componentWillReceiveProps(nextProps){
-  //   if(nextProps.position !== this.props.position){
-  //     this.position = nextProps.position;
-  //   }
-  // }
+    return newPosition;
+  }
+
+  convertToRadians = (degrees) => {
+    return degrees * (Math.PI / 180);
+  }
 
   render() {
     const { position } = this.props;
 
-    const controlPosition = translateCoordinatesBy(position, {y: 2, z: -2});
-    console.log("this.pos", position)
-
     return (
       <Entity id="movementSystem" position={position}>
-        <RigidCursor />
-        <MovementControl onClick={this.moveForward} />
+        <RigidCursor onRotationChanged={this.handleCameraRotation} />
+        <MovementControl 
+          position={this.controlPosition}
+          rotation={this.controlRotation}
+          onClick={this.moveForward}  
+        />
       </Entity>
     )
   }
@@ -46,13 +70,15 @@ class MovementSystem extends PureComponent {
 
 const mapStateToProps = ({camera}) => {
   return {
-    position: camera.position.toJS()
+    position: camera.position.toJS(),
+    rotation: camera.rotation.toJS()
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    move: (position, translateBy) => dispatch(translateCameraBy(position, translateBy))
+    moveCamera: (position, translateBy) => dispatch(translateCameraBy(position, translateBy)),
+    rotateCamera: (nextRotation) => dispatch(rotateCamera(nextRotation))
   }
 }
 

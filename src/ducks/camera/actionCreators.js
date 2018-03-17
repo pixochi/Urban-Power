@@ -10,3 +10,10 @@ export const translateCameraBy = (currentCoordinates, translateBy) => {
     nextPosition
   }
 }
+
+export const rotateCamera = (nextRotation) => {
+  return {
+    type: types.ROTATE_CAMERA,
+    nextRotation
+  }
+}
