@@ -30,8 +30,11 @@ export default class MovementControl extends PureComponent {
     const { onClick, position, rotation, scale, onCursorHovered, onCursorHoveredEnd } = this.props;
 
     return (
-      <Entity id="MovementControl" rotation={rotation}
-      position={position}>
+      <Entity 
+        id="MovementControl" 
+        rotation={rotation}
+        position={position}
+      >
         <Light 
           type="point" 
           position="0 -.15 0.2" 

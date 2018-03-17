@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
-import { StaticBody } from '../index';
 import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Ground extends PureComponent {
@@ -31,18 +30,17 @@ export default class Ground extends PureComponent {
     const { color, height, position, repeat, rotation, texture, width } = this.props;
 
     return (
-      <StaticBody>
-        <Entity
-          primitive="a-plane"
-          rotation={rotation}
-          position={position}
-          width={width}
-          height={height}
-          src={texture}
-          color={color}
-          repeat={repeat}
-        />
-      </StaticBody>
+      <Entity
+        id="ground"
+        primitive="a-plane"
+        rotation={rotation}
+        position={position}
+        width={width}
+        height={height}
+        src={texture}
+        color={color}
+        repeat={repeat}
+      />
     )
   }
 }

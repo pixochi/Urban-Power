@@ -10,7 +10,9 @@ export { default as ObjModel } from './basic/ObjModel';
 export { default as Sky } from './basic/Sky';
 export { default as StaticBody } from './basic/StaticBody';
 
-
+export { default as Bench } from './Bench';
 export { default as Lamp } from './Lamp';
 export { default as MovementControl } from './MovementControl';
 export { default as RigidCursor } from './RigidCursor';
+export { default as Trashcan } from './Trashcan';
+export { default as Tree } from './Tree';

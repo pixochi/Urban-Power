@@ -8,7 +8,10 @@ import {
   GltfModel, 
   Ground,
   Lamp,
-  Sky 
+  Bench,
+  Sky,
+  Trashcan,
+  Tree
 } from './components';
 import axelTorvModel from './resources/models/axeltorv.gltf';
 import skyDay from './resources/panoramas/day-louvre.jpeg';
@@ -40,6 +43,9 @@ class App extends Component {
           rotation="-90 28 0"
           position="-30 -100 -9"
         />
+        <Bench scale=".0008 .0006 .0008" />
+        <Tree />
+        <Trashcan />
 
         { lamps }
         
