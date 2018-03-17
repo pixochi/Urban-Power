@@ -13,17 +13,21 @@ export default class MovementControl extends PureComponent {
     position: aframeCoordinates,
     rotation: aframeCoordinates,
     scale: aframeCoordinates,
+    onCursorHovered: PropTypes.func,
+    onCursorHoveredEnd: PropTypes.func
   }
 
   static defaultProps = {
-    onClick: () =>  console.log("CLicked nav control"),
     position: '0 0 0',
     rotation: '0 0 0',
     scale: '3 3 3',
+    onClick: () =>  null,
+    onCursorHovered: () => null,
+    onCursorHoveredEnd: () => null
   }
 
   render() {
-    const { onClick, position, rotation, scale } = this.props;
+    const { onClick, position, rotation, scale, onCursorHovered, onCursorHoveredEnd } = this.props;
 
     return (
       <Entity id="MovementControl" rotation={rotation}
@@ -38,6 +42,8 @@ export default class MovementControl extends PureComponent {
           src={arrowModel}
           scale={scale}
           onClick={onClick}
+          onCursorHovered={onCursorHovered}
+          onCursorHoveredEnd={onCursorHoveredEnd}
         />
       </Entity>   
     )

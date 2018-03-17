@@ -12,6 +12,8 @@ export default class GltfModel extends PureComponent {
     rotation: aframeCoordinates,
     position: aframeCoordinates,
     scale: aframeCoordinates,
+    onCursorHovered: PropTypes.func,
+    onCursorHoveredEnd: PropTypes.func
   }
 
   static defaultProps = {
@@ -19,6 +21,20 @@ export default class GltfModel extends PureComponent {
     rotation: '0 0 0',
     position: '0 0 0',
     scale: '1 1 1',
+    onCursorHovered: () =>  null,
+    onCursorHoveredEnd: () =>  null,
+  }
+
+  handleStateAdded = (ev) => {
+    if (ev.detail.state === 'cursor-hovered') {
+      this.props.onCursorHovered(ev);
+    }
+  }
+
+  handleStateRemoved = (ev) => {
+    if (ev.detail.state === 'cursor-hovered') {
+      this.props.onCursorHoveredEnd(ev);
+    }
   }
 
   render() {
@@ -33,7 +49,8 @@ export default class GltfModel extends PureComponent {
         scale={scale}
         events={{
           click: onClick,
-          stateadded: (e) => console.log('STATE ADED',e)
+          stateadded: this.handleStateAdded,
+          stateremoved: this.handleStateRemoved
         }}
       />
     )

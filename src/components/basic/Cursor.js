@@ -30,7 +30,7 @@ export default class Cursor extends PureComponent {
   }
 
   render() {
-    const { color, geometry, isStatic, position, rotation, onRotationChanged } = this.props;
+    const { color, geometry, isStatic, markerPosition, position, rotation } = this.props;
 
     return (
       <Entity 
@@ -46,9 +46,7 @@ export default class Cursor extends PureComponent {
             geometry={geometry}
             primitive="a-cursor" 
             color={color}
-            events={{
-              stateadded: (e) => console.log('cursor ADED',e)
-            }}
+            position={markerPosition}
           />
       </Entity>
     )

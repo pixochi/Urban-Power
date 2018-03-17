@@ -17,3 +17,11 @@ export const rotateCamera = (nextRotation) => {
     nextRotation
   }
 }
+
+export const moveCameraStart = () => {
+  return { type: types.MOVE_CAMERA_START }
+}
+
+export const moveCameraEnd = () => {
+  return { type: types.MOVE_CAMERA_END}
+}

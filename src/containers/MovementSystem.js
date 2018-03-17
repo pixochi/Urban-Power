@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 
 import { RigidCursor, MovementControl } from '../components';
-import { translateCameraBy, rotateCamera } from '../ducks/camera/actionCreators';
-import { translateCoordinatesBy } from '../utils/coordinates';
+import { rotateCamera, moveCameraStart, moveCameraEnd } from '../ducks/camera/actionCreators';
+import { convertToRadians } from '../utils/coordinates';
 
 class MovementSystem extends PureComponent {
 
@@ -14,54 +14,38 @@ class MovementSystem extends PureComponent {
     z: -2
   }
 
-  // default rotation
-  controlRotation = { y:0 }
-
-  // how far is the camera moved
-  moveByPoints = 1;
-
-  moveForward = () => {
-    const { position, moveCamera } = this.props;
-    const translateBy = { 
-      x: -this.moveByPoints * Math.sin(this.radians),
-      z: -this.moveByPoints * Math.cos(this.radians) 
-    }
-    moveCamera(position, translateBy);
-  }
-
   handleCameraRotation = (ev) => {
     const { data } = ev.srcElement.components.rotation;
     this.props.rotateCamera(data);
     this.controlPosition = this.calcPositionOnRotationChanged(this.controlPosition.y, data.y);
-    this.controlRotation = { y: data.y }
-    console.log("ROTATION:",this.controlRotation)
   }
 
   calcPositionOnRotationChanged = (radius, degrees) => {
-    this.radians = this.convertToRadians(degrees);
+    const radians = convertToRadians(degrees);
     const newPosition = {
-      x: -radius * Math.sin(this.radians),
+      x: -radius * Math.sin(radians),
       y: this.controlPosition.y,
-      z: -radius * Math.cos(this.radians),
+      z: -radius * Math.cos(radians),
     }
 
     return newPosition;
   }
 
-  convertToRadians = (degrees) => {
-    return degrees * (Math.PI / 180);
-  }
-
   render() {
-    const { position } = this.props;
+    const { position, rotation, moveCameraStart, moveCameraEnd } = this.props;
 
     return (
       <Entity id="movementSystem" position={position}>
-        <RigidCursor onRotationChanged={this.handleCameraRotation} />
+        <RigidCursor
+          position="0 0 0"
+          markerPosition="0 -.1 -1"
+          onRotationChanged={this.handleCameraRotation} 
+        />
         <MovementControl 
           position={this.controlPosition}
-          rotation={this.controlRotation}
-          onClick={this.moveForward}  
+          rotation={rotation}
+          onCursorHovered={moveCameraStart}
+          onCursorHoveredEnd={moveCameraEnd}
         />
       </Entity>
     )
@@ -71,13 +55,14 @@ class MovementSystem extends PureComponent {
 const mapStateToProps = ({camera}) => {
   return {
     position: camera.position.toJS(),
-    rotation: camera.rotation.toJS()
+    rotation: camera.rotation.toJS(),
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    moveCamera: (position, translateBy) => dispatch(translateCameraBy(position, translateBy)),
+    moveCameraStart: () =>  dispatch(moveCameraStart()),
+    moveCameraEnd: () =>  dispatch(moveCameraEnd()),
     rotateCamera: (nextRotation) => dispatch(rotateCamera(nextRotation))
   }
 }

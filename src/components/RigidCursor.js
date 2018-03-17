@@ -17,11 +17,15 @@ export default class RigidCursor extends PureComponent {
   }
 
   render() {
-    const { position, onRotationChanged } = this.props;
+    const { position, onRotationChanged, markerPosition } = this.props;
 
     return (
       <StaticBody id="navigationControl">
-        <Cursor position={position} onRotationChanged={onRotationChanged} />
+        <Cursor 
+          position={position}
+          markerPosition={markerPosition}
+          onRotationChanged={onRotationChanged} 
+        />
       </StaticBody>
     )
   }

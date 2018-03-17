@@ -4,8 +4,11 @@ import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './App';
-import store from './ducks/store';
+import initStore from './ducks/store';
+import './rxjs-operators';
 import './index.css';
+
+const store = initStore();
 
 ReactDOM.render(
   <Provider store={store}>

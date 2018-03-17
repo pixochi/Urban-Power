@@ -22,3 +22,7 @@ export const coordinatesStringToMap = (str) => {
   const [x, y, z] = str.split(' ').map(coordinate => Number.parseFloat(coordinate));
   return Map({x, y, z});
 }
+
+export const convertToRadians = (degrees) => {
+  return degrees * (Math.PI / 180);
+}
