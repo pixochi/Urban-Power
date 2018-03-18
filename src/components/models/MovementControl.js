@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
-import { GltfModel, Light } from './';
-import arrowModel from '../resources/models/arrow.glb';
-import { aframeCoordinates } from '../utils/propTypes';
+import { GltfModel, Light } from '../';
+import arrowBlueModel from '../../resources/models/arrow/arrow-blue.glb';
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class MovementControl extends PureComponent {
 
@@ -13,6 +13,7 @@ export default class MovementControl extends PureComponent {
     position: aframeCoordinates,
     rotation: aframeCoordinates,
     scale: aframeCoordinates,
+    model: PropTypes.string,
     onCursorHovered: PropTypes.func,
     onCursorHoveredEnd: PropTypes.func
   }
@@ -21,13 +22,14 @@ export default class MovementControl extends PureComponent {
     position: '0 0 0',
     rotation: '0 0 0',
     scale: '3 3 3',
+    model: arrowBlueModel,
     onClick: () =>  null,
     onCursorHovered: () => null,
     onCursorHoveredEnd: () => null
   }
 
   render() {
-    const { onClick, position, rotation, scale, onCursorHovered, onCursorHoveredEnd } = this.props;
+    const { model, onClick, position, rotation, scale, onCursorHovered, onCursorHoveredEnd } = this.props;
 
     return (
       <Entity 
@@ -39,14 +41,15 @@ export default class MovementControl extends PureComponent {
           type="point" 
           position="0 -.15 0.2" 
           intensity={0.5}
-          color="#6bede1"
+          color="#fff"
         />
         <GltfModel 
-          src={arrowModel}
+          src={model}
           scale={scale}
           onClick={onClick}
           onCursorHovered={onCursorHovered}
           onCursorHoveredEnd={onCursorHoveredEnd}
+        />
         />
       </Entity>   
     )

@@ -39,7 +39,8 @@ export default class Cursor extends PureComponent {
         rotation={rotation}
         static-body={isStatic}
         events={{
-          componentchanged: this.handleComponentChanged
+          componentchanged: this.handleComponentChanged,
+          devicemotion: () =>  console.log("device motion")
         }}
       >
           <Entity

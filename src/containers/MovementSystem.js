@@ -2,9 +2,12 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 
-import { RigidCursor, MovementControl } from '../components';
+import { RigidCursor, MovementControl } from '../components/models';
+import { toJS } from '../components/hoc';
 import { rotateCamera, moveCameraStart, moveCameraEnd } from '../ducks/camera/actionCreators';
 import { convertToRadians } from '../utils/coordinates';
+import arrowBlueModel from '../resources/models/arrow/arrow.glb';
+import arrowGreenModel from '../resources/models/arrow/arrow-green.glb';
 
 class MovementSystem extends PureComponent {
 
@@ -32,7 +35,8 @@ class MovementSystem extends PureComponent {
   }
 
   render() {
-    const { position, rotation, moveCameraStart, moveCameraEnd } = this.props;
+    const { isEditing, position, rotation, moveCameraStart, moveCameraEnd } = this.props;
+    const movementControlModel = isEditing ? arrowGreenModel : arrowBlueModel;
 
     return (
       <Entity id="movementSystem" position={position}>
@@ -41,7 +45,8 @@ class MovementSystem extends PureComponent {
           markerPosition="0 -.1 -1"
           onRotationChanged={this.handleCameraRotation} 
         />
-        <MovementControl 
+        <MovementControl
+          model={movementControlModel}
           position={this.controlPosition}
           rotation={rotation}
           onCursorHovered={moveCameraStart}
@@ -52,10 +57,11 @@ class MovementSystem extends PureComponent {
   }
 }
 
-const mapStateToProps = ({camera}) => {
+const mapStateToProps = ({camera, editor}) => {
   return {
-    position: camera.position.toJS(),
-    rotation: camera.rotation.toJS(),
+    isEditing: editor.isEditing,
+    position: camera.position,
+    rotation: camera.rotation,
   }
 }
 
@@ -67,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovementSystem);
+export default connect(mapStateToProps, mapDispatchToProps)(toJS(MovementSystem));

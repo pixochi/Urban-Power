@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { Cursor, StaticBody } from './index';
-import { aframeCoordinates } from '../utils/propTypes';
+import { Cursor } from '../index';
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class RigidCursor extends PureComponent {
 
@@ -20,13 +20,12 @@ export default class RigidCursor extends PureComponent {
     const { position, onRotationChanged, markerPosition } = this.props;
 
     return (
-      <StaticBody id="navigationControl">
-        <Cursor 
-          position={position}
-          markerPosition={markerPosition}
-          onRotationChanged={onRotationChanged} 
-        />
-      </StaticBody>
+      <Cursor
+        id="navigationControl"
+        position={position}
+        markerPosition={markerPosition}
+        onRotationChanged={onRotationChanged} 
+      />
     )
   }
 }

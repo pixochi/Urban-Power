@@ -50,7 +50,7 @@ export default class GltfModel extends PureComponent {
         events={{
           click: onClick,
           stateadded: this.handleStateAdded,
-          stateremoved: this.handleStateRemoved
+          stateremoved: this.handleStateRemoved,
         }}
       />
     )

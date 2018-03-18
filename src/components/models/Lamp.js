@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
-import { GltfModel, Light } from './index';
-import lampModel from '../resources/models/street_lamp/streetlampg.glb';
-import { translateCoordinatesBy } from '../utils/coordinates';
-import { aframeCoordinates } from '../utils/propTypes';
+import { GltfModel, Light } from '../index';
+import lampModel from '../../resources/models/street_lamp/streetlampg.glb';
+import { translateCoordinatesBy } from '../../utils/coordinates';
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Lamp extends PureComponent {
 

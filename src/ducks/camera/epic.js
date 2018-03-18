@@ -8,7 +8,7 @@ export const moveCameraEpic = (action$, store) =>
   action$.ofType(MOVE_CAMERA_START)
     .mergeMap(action =>
       interval(50)
-      .startWith(0)  
+      .delay(1000)
         .map(() => {
           const { position, rotation, moveByPoints } = store.getState().camera;
           const radians = convertToRadians(rotation.get('y'));

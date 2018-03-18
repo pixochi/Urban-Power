@@ -2,35 +2,37 @@ import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
-import { GltfModel } from './index';
-import trashcanModel from '../resources/models/trashcan.glb';
-// import { translateCoordinatesBy } from '../utils/coordinates';
-import { aframeCoordinates } from '../utils/propTypes';
+import { GltfModel } from '../index';
+import benchModel from '../../resources/models/bench.glb';
+import { aframeCoordinates } from '../../utils/propTypes';
 
-export default class Trashcan extends PureComponent {
+export default class Bench extends PureComponent {
 
   static propTypes = {
     position: aframeCoordinates,
     rotation: aframeCoordinates,
     scale: aframeCoordinates,
+    onClick: PropTypes.func
   }
 
   static defaultProps = {
     position: '0 0 0',
     rotation: '0 0 0',
-    scale: '0.0009 0.0009 0.0009',
+    scale: '1 1 1',
+    onClick: () => null
   }
 
   render() {
-    const { position, rotation, scale } = this.props;
+    const { position, rotation, scale, onClick } = this.props;
 
     return (
-      <Entity id="tree">
+      <Entity id="bench">
         <GltfModel
-          src={trashcanModel}
+          src={benchModel}
           rotation={rotation}
           position={position}
           scale={scale}
+          onClick={onClick}
         />
       </Entity>
     )

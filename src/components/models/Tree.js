@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Entity } from 'aframe-react';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types';
 
-import { GltfModel } from './index';
-import treeModel from '../resources/models/trees/birch.glb';
-// import { translateCoordinatesBy } from '../utils/coordinates';
-import { aframeCoordinates } from '../utils/propTypes';
+import { GltfModel } from '../index';
+import treeModel from '../../resources/models/trees/birch.glb';
+import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Tree extends PureComponent {
 
