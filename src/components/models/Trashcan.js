@@ -3,7 +3,6 @@ import { Entity } from 'aframe-react';
 import PropTypes from 'prop-types'
 
 import { GltfModel } from '../';
-import { editable } from '../hoc';
 import trashcanModel from '../../resources/models/trashcan.glb';
 import { aframeCoordinates } from '../../utils/propTypes';
 
@@ -40,4 +39,4 @@ class Trashcan extends PureComponent {
   }
 }
 
-export default editable(Trashcan);
+export default Trashcan;

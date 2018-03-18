@@ -50,7 +50,6 @@ export default class MovementControl extends PureComponent {
           onCursorHovered={onCursorHovered}
           onCursorHoveredEnd={onCursorHoveredEnd}
         />
-        />
       </Entity>   
     )
   }

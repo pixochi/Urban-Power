@@ -6,7 +6,7 @@ import { RigidCursor, MovementControl } from '../components/models';
 import { toJS } from '../components/hoc';
 import { rotateCamera, moveCameraStart, moveCameraEnd } from '../ducks/camera/actionCreators';
 import { convertToRadians } from '../utils/coordinates';
-import arrowBlueModel from '../resources/models/arrow/arrow.glb';
+import arrowBlueModel from '../resources/models/arrow/arrow-blue.glb';
 import arrowGreenModel from '../resources/models/arrow/arrow-green.glb';
 
 class MovementSystem extends PureComponent {
