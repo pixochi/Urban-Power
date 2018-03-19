@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { toJS } from '../components/hoc';
 import { startEditing } from '../ducks/editor/actionCreators';
-// import { rotateCamera, moveCameraStart, moveCameraEnd } from '../ducks/camera/actionCreators';
 
 const ID_SUFFIX = '_editable';
 

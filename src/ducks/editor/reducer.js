@@ -4,7 +4,8 @@ import * as types from './types';
 
 const EditorRecord = Record({
   isEditing: false,
-  selectedId: null
+  selectedId: null,
+  selectedModelType: null
 });
 
 const initialState = new EditorRecord();
