@@ -29,6 +29,14 @@ export default class Lamp extends PureComponent {
     this.ligthPosition2 = changeCoordinatesBy(props.position, {x: -1.4, y: 4, z: 0.4});
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    if(nextProps.position !== this.props.position) {
+      this.ligthPosition1 = changeCoordinatesBy(nextProps.position, {x: -.65, y: 4, z: -0.4});
+      this.ligthPosition2 = changeCoordinatesBy(nextProps.position, {x: -1.4, y: 4, z: 0.4});
+    }
+  }
+  
+
   render() {
     const { isOn, position, rotation, scale } = this.props;
 

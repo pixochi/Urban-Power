@@ -1,10 +1,10 @@
 import { Map, fromJS } from 'immutable';
 
-import * as types from './types';
-import { EDITING_MODEL } from '../editor/types';
-import { ROTATE_MODEL, TRANSLATE_MODEL } from '../models/types';
+import { EDITING_MODEL, EDITING_END } from '../editor/types';
+import { ROTATE_MODEL_BY, TRANSLATE_MODEL_BY, TRANSLATE_MODEL } from './types';
 import { Bench, Lamp, Trashcan, Tree } from '../../components/models';
 import { changeCoordinatesBy } from '../../utils/coordinates';
+import { EDITING_MODEL_HEIGHT } from '../../constants/editor';
 
 let lamps = {};
 for (let i = 0; i < 4; i++) {
@@ -53,27 +53,44 @@ const initialState =  Map({
 export default (state = initialState, action) => {
   switch(action.type) {
     case EDITING_MODEL: {
-      const currentPosition = state.getIn([action.modelType, 'items', action.selectedId, 'position']);
+      const currentPosition = state.getIn(getModelProp(action, 'position'));
       return state.setIn(
-        [action.modelType, 'items', action.selectedId, 'position'], 
-        changeCoordinatesBy(currentPosition, {y: 1})
+        getModelProp(action, 'position'), 
+        changeCoordinatesBy(currentPosition, {y: EDITING_MODEL_HEIGHT})
       );
     }
-    case ROTATE_MODEL: {
-      const currentRotation = state.getIn([action.modelType, 'items', action.id, 'rotation']);
+    case EDITING_END: {
       return state.setIn(
-        [action.modelType, 'items', action.id, 'rotation'], 
+        getModelProp(action, 'position'), 
+        state.getIn(getModelProp(action, 'position')).merge({y: 0})
+      );
+    }
+    case ROTATE_MODEL_BY: {
+      const currentRotation = state.getIn(getModelProp(action, 'rotation'));
+      return state.setIn(
+        getModelProp(action, 'rotation'), 
         changeCoordinatesBy(currentRotation, action.rotateBy)
       );
     }
-    case TRANSLATE_MODEL: {
-      const currentPosition = state.getIn([action.modelType, 'items', action.id, 'position']);
+    case TRANSLATE_MODEL_BY: {
+      const currentPosition = state.getIn(getModelProp(action, 'position'));
       return state.setIn(
-        [action.modelType, 'items', action.id, 'position'], 
+        getModelProp(action, 'position'), 
         changeCoordinatesBy(currentPosition, action.translateBy)
+      );
+    }
+    case TRANSLATE_MODEL: {
+      const currentPosition = state.getIn(getModelProp(action, 'position'));
+      return state.setIn(
+        getModelProp(action, 'position'), 
+        action.nextPosition
       );
     }
     default: 
       return state;
   }
+}
+
+const getModelProp = (action, prop) => {
+  return [action.modelType, 'items', action.id, prop]
 }

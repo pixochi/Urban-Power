@@ -1,15 +1,17 @@
 import * as types from './types';
 
-export const startEditing = (selectedId, modelType) => {
+export const startEditing = (id, modelType) => {
   return {
     type: types.EDITING_START,
-    selectedId,
+    id,
     modelType
   }
 }
 
-export const stopEditing = () => {
+export const stopEditing = (id, modelType) => {
   return {
-    type: types.EDITING_END
+    type: types.EDITING_END,
+    id,
+    modelType
   }
 }

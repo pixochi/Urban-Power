@@ -4,7 +4,6 @@ import { Scene } from 'aframe-react';
 
 import { Models, MovementSystem } from './containers';
 import { GltfModel, Ground, Light } from './components';
-import { Lamp, Bench, Trashcan, Tree } from './components/models';
 import axelTorvModel from './resources/models/axeltorv.gltf';
 import groundTexture from './resources/textures/floor-bricks.png';
 import './App.css';

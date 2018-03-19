@@ -1,8 +1,8 @@
 import { combineEpics } from 'redux-observable';
-import{ moveCameraEpic } from './camera/epics';
+import cameraEpics from './camera/epics';
 import editorEpics from './editor/epics';
 
 export default combineEpics(
-  moveCameraEpic,
+  cameraEpics,
   editorEpics
 );

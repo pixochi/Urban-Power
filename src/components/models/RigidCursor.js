@@ -7,6 +7,7 @@ import { aframeCoordinates } from '../../utils/propTypes';
 export default class RigidCursor extends PureComponent {
 
   static propTypes = {
+    center: aframeCoordinates,
     position: aframeCoordinates,
     onRotationChanged: PropTypes.func
   }
@@ -17,13 +18,13 @@ export default class RigidCursor extends PureComponent {
   }
 
   render() {
-    const { position, onRotationChanged, markerPosition } = this.props;
+    const { center, position, onRotationChanged } = this.props;
 
     return (
       <Cursor
         id="navigationControl"
         position={position}
-        markerPosition={markerPosition}
+        markerPosition={center}
         onRotationChanged={onRotationChanged} 
       />
     )

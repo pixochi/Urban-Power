@@ -1,4 +1,5 @@
 import { interval } from 'rxjs/observable/interval';
+import { merge } from 'rxjs/observable/merge';
 
 import { MOVE_CAMERA_START, MOVE_CAMERA_END } from './types';
 import { translateCameraBy } from './actionCreators';
@@ -8,9 +9,9 @@ export const moveCameraEpic = (action$, store) =>
   action$.ofType(MOVE_CAMERA_START)
     .mergeMap(action =>
       interval(50)
-      .delay(1000)
+      .delay(500)
         .map(() => {
-          const { position, rotation, moveByPoints } = store.getState().camera;
+          const { rotation, moveByPoints } = store.getState().camera;
           const radians = convertToRadians(rotation.get('y'));
           const translateBy = { 
             x: -moveByPoints * Math.sin(radians),
@@ -22,3 +23,6 @@ export const moveCameraEpic = (action$, store) =>
         .takeUntil(action$.ofType(MOVE_CAMERA_END))
     );
 
+export default (action$, store) => merge(
+  moveCameraEpic(action$, store),
+);

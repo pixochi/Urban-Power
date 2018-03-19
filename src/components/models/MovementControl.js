@@ -30,7 +30,7 @@ export default class MovementControl extends PureComponent {
 
   render() {
     const { model, onClick, position, rotation, scale, onCursorHovered, onCursorHoveredEnd } = this.props;
-
+    
     return (
       <Entity 
         id="MovementControl" 
