@@ -1,7 +1,19 @@
 import * as types from './types';
 
-export const startEditing = () => {
+export const translateModel = (id, modelType, translateBy) => {
   return {
-    type: types.EDITING_TOGGLE
+    type: types.TRANSLATE_MODEL,
+    id,
+    modelType,
+    translateBy
+  }
+}
+
+export const rotateModel = (id, modelType, rotateBy) => {
+  return {
+    type: types.ROTATE_MODEL,
+    id,
+    modelType,
+    rotateBy
   }
 }

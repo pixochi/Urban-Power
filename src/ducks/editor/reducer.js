@@ -11,7 +11,7 @@ const initialState = new EditorRecord();
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case types.EDITING_START: {
+    case types.EDITING_MODEL: {
       return state.set('isEditing', true).set('selectedId', action.selectedId);
     }
     case types.EDITING_END: {

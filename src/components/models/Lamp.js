@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { GltfModel, Light } from '../index';
 import lampModel from '../../resources/models/street_lamp/streetlampg.glb';
-import { translateCoordinatesBy } from '../../utils/coordinates';
+import { changeCoordinatesBy } from '../../utils/coordinates';
 import { aframeCoordinates } from '../../utils/propTypes';
 
 export default class Lamp extends PureComponent {
@@ -25,8 +25,8 @@ export default class Lamp extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.ligthPosition1 = translateCoordinatesBy(props.position, {x: -.65, y: 4, z: -0.4});
-    this.ligthPosition2 = translateCoordinatesBy(props.position, {x: -1.4, y: 4, z: 0.4});
+    this.ligthPosition1 = changeCoordinatesBy(props.position, {x: -.65, y: 4, z: -0.4});
+    this.ligthPosition2 = changeCoordinatesBy(props.position, {x: -1.4, y: 4, z: 0.4});
   }
 
   render() {

@@ -1,9 +1,10 @@
 import { Map, fromJS } from 'immutable';
 
 import * as types from './types';
-import { EDITING_START } from '../editor/types';
+import { EDITING_MODEL } from '../editor/types';
+import { ROTATE_MODEL, TRANSLATE_MODEL } from '../models/types';
 import { Bench, Lamp, Trashcan, Tree } from '../../components/models';
-import { translateCoordinatesBy } from '../../utils/coordinates';
+import { changeCoordinatesBy } from '../../utils/coordinates';
 
 let lamps = {};
 for (let i = 0; i < 4; i++) {
@@ -21,7 +22,6 @@ const initialState =  Map({
     items: Map({
       1: Map({
         uuid: 1,
-        scale: ".0008 .0006 .0008",
         position: "2 0 2"
       })
     })
@@ -52,11 +52,25 @@ const initialState =  Map({
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case EDITING_START: {
+    case EDITING_MODEL: {
       const currentPosition = state.getIn([action.modelType, 'items', action.selectedId, 'position']);
       return state.setIn(
         [action.modelType, 'items', action.selectedId, 'position'], 
-        translateCoordinatesBy(currentPosition, {y: 1})
+        changeCoordinatesBy(currentPosition, {y: 1})
+      );
+    }
+    case ROTATE_MODEL: {
+      const currentRotation = state.getIn([action.modelType, 'items', action.id, 'rotation']);
+      return state.setIn(
+        [action.modelType, 'items', action.id, 'rotation'], 
+        changeCoordinatesBy(currentRotation, action.rotateBy)
+      );
+    }
+    case TRANSLATE_MODEL: {
+      const currentPosition = state.getIn([action.modelType, 'items', action.id, 'position']);
+      return state.setIn(
+        [action.modelType, 'items', action.id, 'position'], 
+        changeCoordinatesBy(currentPosition, action.translateBy)
       );
     }
     default: 

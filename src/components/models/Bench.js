@@ -18,7 +18,7 @@ export default class Bench extends PureComponent {
   static defaultProps = {
     position: '0 0 0',
     rotation: '0 0 0',
-    scale: '1 1 1',
+    scale: '.0008 .0006 .0008',
     onClick: () => null
   }
 

@@ -17,7 +17,7 @@ export const moveCameraEpic = (action$, store) =>
             z: -moveByPoints * Math.cos(radians) 
           }
 
-          return translateCameraBy(position, translateBy);
+          return translateCameraBy(translateBy);
         })
         .takeUntil(action$.ofType(MOVE_CAMERA_END))
     );

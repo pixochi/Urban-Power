@@ -11,14 +11,17 @@ const ID_SUFFIX = '_editable';
 class Models extends PureComponent {
 
   handleStateAdded = (ev, modelId, modelType) => {
+    const { isEditing, startEditing } = this.props;
     if (ev.detail.state === 'cursor-hovered') {
-      this.props.startEditing(modelId, modelType);
+      if(!isEditing) {
+        startEditing(modelId, modelType);
+      } 
     }
   }
 
   handleStateRemoved = (ev) => {
     if (ev.detail.state === 'cursor-hovered') {
-      this.props.stopEditing();
+      // this.props.stopEditing();
     }
   }
 
@@ -50,9 +53,10 @@ class Models extends PureComponent {
   }
 }
 
-const mapStateToProps = ({models}) => {
+const mapStateToProps = ({models, editor}) => {
   return {
     models,
+    isEditing: editor.isEditing
   }
 }
 

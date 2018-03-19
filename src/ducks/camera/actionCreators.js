@@ -1,20 +1,16 @@
 import * as types from './types';
-import { translateCoordinatesBy } from '../../utils/coordinates';
 
-
-export const translateCameraBy = (currentCoordinates, translateBy) => {
-  const nextPosition = translateCoordinatesBy(currentCoordinates, translateBy);
-
+export const translateCameraBy = (translateBy) => {
   return {
     type: types.TRANSLATE_CAMERA,
-    nextPosition
+    translateBy
   }
 }
 
-export const rotateCamera = (nextRotation) => {
+export const rotateCamera = (rotateBy) => {
   return {
     type: types.ROTATE_CAMERA,
-    nextRotation
+    rotateBy
   }
 }
 
